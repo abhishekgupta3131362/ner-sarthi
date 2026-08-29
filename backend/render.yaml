@@ -15,5 +15,5 @@ services:
 databases:
   - name: ner-sarthi-db
     databaseName: ner_sarthi
-    user: postgres
+    
     plan: free
