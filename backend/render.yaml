@@ -1,0 +1,19 @@
+﻿services:
+  - type: web
+    name: ner-sarthi-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m app.seed_phase_a && python -m app.seed_phase_b && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ner-sarthi-db
+          property: connectionString
+      - key: CORS_ORIGINS
+        value: "*"
+
+databases:
+  - name: ner-sarthi-db
+    databaseName: ner_sarthi
+    user: postgres
+    plan: free
